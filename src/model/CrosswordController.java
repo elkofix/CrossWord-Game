@@ -92,8 +92,26 @@ public class CrosswordController {
 	 * @return
 	 */
 	public String evaluateCell(String letter, int num) {
-		
-		return null;
+		String msj = "\n Lo siento, no hay palabras con "+letter+"\n";
+		Boolean isFound = false;
+		if(isInitialized()){ 
+			for (int i = 0; i < crossword.length && !isFound; i++) {
+				for (int j = 0; j < crossword[0].length && !isFound; j++) {
+					if(crossword[i][j].getNumber() == num){
+						isFound = true;
+						if(crossword[i][j].getLetter().equals(letter)){
+							msj = " \nLa "+letter+" SI esta en la casilla "+num+"\n";
+						}else{
+							msj = " \nLo siento, la "+letter+" NO esta en la casila "+num+"\n";
+						}
+						
+					}
+				}
+			}
+		}else{
+			msj = "\nSorry dude, the game is not initialized\n";
+		}
+		return msj;	
 	}
 	
 	public String showCrossword() {
