@@ -13,13 +13,30 @@ public class CrosswordController {
 	 */
 	private Cell [][] crossword;
 	
+	public CrosswordController() {
+
+	}
 	/**
 	 * method for initializing a crossword puzzle
 	 * @param puzzle is a matrix of Strings containing 
 	 * the initial state of a crossword puzzle
 	 */
 	public void initCrossword(String[][] puzzle) {
-		
+		int count = 1;
+		this.crossword = new Cell[puzzle.length][puzzle[0].length];
+		for (int i = 0; i < puzzle.length; i++) {
+			for (int j = 0; j < puzzle[0].length; j++) {
+				if(puzzle[i][j].equals(" ")){
+					crossword[i][j] = new Cell(CellType.BLACK, puzzle[i][j], 0);
+				}else{
+					crossword[i][j] = new Cell(CellType.OPEN, puzzle[i][j], count);
+					count++;
+				}
+				
+			}
+		}
+
+
 		
 	}
 	/**
@@ -51,8 +68,21 @@ public class CrosswordController {
 	 * @return
 	 */
 	public String getHint(String letter) {
-		
-		return null;
+		String msj = "\n Lo siento, no hay palabras con "+letter+"\n";
+		Boolean isFound = false;
+		if(isInitialized()){ 
+			for (int i = 0; i < crossword.length && !isFound; i++) {
+				for (int j = 0; j < crossword[0].length && !isFound; j++) {
+					if(crossword[i][j].getLetter().equals(letter)){
+						isFound = true;
+						msj = " \nHay una palabra con "+letter+" en el crucigrama en la casilla "+crossword[i][j].getNumber()+"\n";
+					}
+				}
+			}
+		}else{
+			msj = "\nSorry dude, the game is not initialized\n";
+		}
+		return msj;
 	}
 	
 	/**
