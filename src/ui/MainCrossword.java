@@ -42,7 +42,6 @@ public class MainCrossword {
 				"(2) Init game \n"+
 				"(3) Provide a hint\n"+
 				"(4) Evaluate cell\n" +
-				"(5) Evaluate word\n"+
 				"(0) To leave the application"
 				);
 		option= sc.nextInt();
@@ -70,20 +69,12 @@ public class MainCrossword {
 		case 4:
 			evaluateLetter();
 			break;
-		case 5:
-			evaluateWord();
-			break;
 		default:
 			System.out.println("Error, wrong option");
 		
 		}
 	
 
-	}
-
-public void evaluateWord() {
-		
-		
 	}
 
 
